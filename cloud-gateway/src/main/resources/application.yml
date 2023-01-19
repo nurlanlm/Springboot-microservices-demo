@@ -1,0 +1,26 @@
+server:
+  port: 9191
+
+#eureka:
+#  instance:
+#    hostname: localhost
+
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: STUDENT-SERVICE
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/students/**
+        - id: UNIVERSITY-SERVICE
+          uri: lb://UNIVERSITY-SERVICE
+          predicates:
+            - Path=/universities/**
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
